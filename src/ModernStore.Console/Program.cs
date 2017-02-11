@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using ModernStore.Domain.CommandHandlers;
 using ModernStore.Domain.Commands;
+using ModernStore.Domain.Commands.Handlers;
 using ModernStore.Domain.Entities;
 using ModernStore.Domain.Repositories;
 using ModernStore.Domain.ValueObjects;
@@ -45,7 +45,7 @@ namespace ModernStore
                 customerRepository,
                 productRepository,
                 orderRepository);
-            handler.Handle(command);
+            handler.Handle(command);            
 
             if (handler.IsValid())
                 Console.WriteLine("Pedido cadastrado com sucesso!");
