@@ -1,13 +1,14 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ModernStore.Domain.Entities;
+using ModernStore.Domain.ValueObjects;
 
 namespace ModernStore.Domain.Tests
 {
     [TestClass]
     public class OrderTests
     {
-        private readonly Customer _customer = new Customer("André", "Baltieri", "andrebaltieri@hotmail.com", new User("andrebaltieri", "andrebaltieri"));
+        private readonly Customer _customer = new Customer(new Name("André", "Baltieri"), new Email("andrebaltieri@hotmail.com"), new Document("76745148544"), new User("andrebaltieri", "andrebaltieri"));
 
         [TestMethod]
         [TestCategory("Order - New Order")]
