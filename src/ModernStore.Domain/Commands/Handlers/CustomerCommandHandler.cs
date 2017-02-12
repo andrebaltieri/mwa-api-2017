@@ -39,10 +39,6 @@ namespace ModernStore.Domain.Commands.Handlers
             var customer = new Customer(name, email, document, user);
 
             // Passo 3. Adicionar as notificação
-            AddNotifications(name.Notifications);
-            AddNotifications(document.Notifications);
-            AddNotifications(email.Notifications);
-            AddNotifications(user.Notifications);
             AddNotifications(customer.Notifications);
 
             if (!IsValid())

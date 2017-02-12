@@ -19,6 +19,7 @@ namespace ModernStore.Domain.Entities
             AddNotifications(name.Notifications);
             AddNotifications(email.Notifications);
             AddNotifications(Document.Notifications);
+            AddNotifications(User.Notifications);
         }
 
         public Name Name { get; private set; }
