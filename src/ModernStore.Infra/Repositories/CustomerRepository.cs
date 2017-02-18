@@ -7,6 +7,7 @@ using ModernStore.Domain.Commands.Results;
 using ModernStore.Domain.Entities;
 using ModernStore.Domain.Repositories;
 using ModernStore.Infra.Contexts;
+using ModernStore.Shared;
 
 namespace ModernStore.Infra.Repositories
 {
@@ -25,6 +26,15 @@ namespace ModernStore.Infra.Repositories
                 .Customers
                 .Include(x => x.User)
                 .FirstOrDefault(x => x.Id == id);
+        }
+
+        public Customer GetByUsername(string username)
+        {
+            return _context
+                .Customers
+                .Include(x => x.User)
+                .AsNoTracking()
+                .FirstOrDefault(x => x.User.Username == username);
         }
 
         public void Save(Customer customer)
@@ -60,7 +70,7 @@ namespace ModernStore.Infra.Repositories
             //    .FirstOrDefault(x => x.Username == username);
 
             var query = "SELECT * FROM [GetCustomerInfoView] WHERE [Active]=1 AND [Username]=@username";
-            using (var conn = new SqlConnection(@"Server=.\sqlexpress;Database=ModernStore;User ID=sa;Password=sqlexpress;"))
+            using (var conn = new SqlConnection(Runtime.ConnectionString))
             {
                 conn.Open();
                 return conn
