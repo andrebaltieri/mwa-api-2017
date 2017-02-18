@@ -19,6 +19,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace ModernStore.Api.Controllers
 {
+    // COmentei algo aqui
     public class AccountController : BaseController
     {
         private Customer _customer;
