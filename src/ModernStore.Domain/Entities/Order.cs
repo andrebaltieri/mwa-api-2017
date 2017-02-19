@@ -9,6 +9,7 @@ namespace ModernStore.Domain.Entities
 {
     public class Order : Entity
     {
+        protected Order() { }
         private readonly IList<OrderItem> _items;
 
         public Order(Customer customer, decimal deliveryFee, decimal discount)
@@ -16,7 +17,7 @@ namespace ModernStore.Domain.Entities
             Customer = customer;
             CreateDate = DateTime.Now;
             Number = Guid.NewGuid().ToString().Substring(0, 8).ToUpper();
-            Status = EOrderStatus.Created;            
+            Status = EOrderStatus.Created;
             DeliveryFee = deliveryFee;
             Discount = discount;
 
@@ -31,7 +32,7 @@ namespace ModernStore.Domain.Entities
         public DateTime CreateDate { get; private set; }
         public string Number { get; private set; }
         public EOrderStatus Status { get; private set; }
-        public IReadOnlyCollection<OrderItem> Items => _items.ToArray();
+        public ICollection<OrderItem> Items => _items.ToArray();
         public decimal DeliveryFee { get; private set; }
         public decimal Discount { get; private set; }
 
@@ -41,7 +42,7 @@ namespace ModernStore.Domain.Entities
         public void AddItem(OrderItem item)
         {
             AddNotifications(item.Notifications);
-            if(item.IsValid())
+            if (item.IsValid())
                 _items.Add(item);
         }
     }

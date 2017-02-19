@@ -4,6 +4,7 @@ namespace ModernStore.Domain.ValueObjects
 {
     public class Email : Notifiable
     {
+        public Email() { }
         public Email(string address)
         {
             Address = address;
