@@ -8,7 +8,7 @@ namespace ModernStore.Domain.Tests
     [TestClass]
     public class OrderTests
     {
-        private readonly Customer _customer = new Customer(new Name("Henrique", "Silvestre"), new Email("henrique@gmail.com"), new Document("76745148544"), new User("hsilvest", "123"));
+        private readonly Customer _customer = new Customer(new Name("Henrique", "Silvestre"), new Email("henrique@gmail.com"), new Document("76745148544"), new User("hsilvest", "123", "123"));
 
         [TestMethod]
         [TestCategory("Order - New Order")]

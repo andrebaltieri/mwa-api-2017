@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ModernStore.Domain.Commands
+namespace ModernStore.Domain.Commands.Inputs
 {
     public class RegisterCustomerCommand : ICommand
     {

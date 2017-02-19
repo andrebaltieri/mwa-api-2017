@@ -8,8 +8,10 @@ using ModernStore.Domain.Commands;
 using ModernStore.Domain.Entities;
 using ModernStore.Domain.Repositories;
 using ModernStore.Shared.Commands;
+using ModernStore.Domain.Commands.Inputs;
+using ModernStore.Domain.Commands.Results;
 
-namespace ModernStore.Domain.CommandHandlers
+namespace ModernStore.Domain.Commands.Handlers
 {
     public class OrderCommandHandler : Notifiable,
         ICommandHandler<RegisterOrderCommand>
@@ -25,7 +27,7 @@ namespace ModernStore.Domain.CommandHandlers
             _orderRepository = orderRepository;
         }
 
-        public void Handle(RegisterOrderCommand command)
+        public ICommandResult Handle(RegisterOrderCommand command)
         {
             // Instancia o cliente (Lendo do repositorio)
             var customer = _customerRepository.Get(command.Customer);
@@ -46,6 +48,9 @@ namespace ModernStore.Domain.CommandHandlers
             // Persiste no banco
             if (order.IsValid())
                 _orderRepository.Save(order);
+
+            return new RegisterOrderCommandResult(order.Number);
+
         }        
     }
 }

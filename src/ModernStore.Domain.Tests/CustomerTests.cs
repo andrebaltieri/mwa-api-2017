@@ -8,7 +8,7 @@ namespace ModernStore.Domain.Tests
     [TestClass]
     public class CustomerTests
     {
-        private readonly User user = new User("hsilvest", "123");
+        private readonly User user = new User("hsilvest", "123", "123");
         private readonly Name name = new Name("Henrique", "Silvestre");
         private readonly Email email = new Email("henrique@gmail.com");
         public readonly Document document = new Document("76745148544");
