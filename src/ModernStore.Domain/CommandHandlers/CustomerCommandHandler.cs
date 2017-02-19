@@ -1,13 +1,16 @@
-﻿using FluentValidator;
+﻿using System;
+using FluentValidator;
 using ModernStore.Domain.Commands;
 using ModernStore.Domain.Repositories;
 using ModernStore.Domain.ValueObjects;
 using ModernStore.Shared.Commands;
+using ModernStore.Domain.Entities;
 
 namespace ModernStore.Domain.CommandHandlers
 {
     public class CustomerCommandHandler : Notifiable,
-        ICommandHandler<UpdateCustomerCommand>
+        ICommandHandler<UpdateCustomerCommand>,
+        ICommandHandler<RegisterCustomerCommand>
     {
         private readonly ICustomerRepository _customerRepository;
 
@@ -38,6 +41,22 @@ namespace ModernStore.Domain.CommandHandlers
             // Persistir no banco
             if (customer.IsValid())
                 _customerRepository.Update(customer);
+        }
+
+        public void Handle(RegisterCustomerCommand command)
+        {
+            // Passo 1. Verificar se o CPF já existe
+            if (_customerRepository.DocumentExists(command.Document))
+            {
+                AddNotification("Document", "Este CPF já está em uso!");
+                return;
+            }
+
+            // Passo 2. Gerar o novo cliente
+            var name = new Name(command.FirstName, command.LastName);
+            var customer = new Customer()
+            // Passo 3. Inserir no banco
+            // Passo 4. Enviar E-mail de boas vindas
         }
     }
 }
