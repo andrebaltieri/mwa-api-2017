@@ -18,7 +18,6 @@ namespace ModernStore.Domain.Entities
                 .AreEquals(x => x.Password, EncryptPassword(confirmPassword), "As senhas não coincidem");
         }
 
-        public Guid Id { get; private set; }
         public string Username { get; private set; }
         public string Password { get; private set; }
         public bool Active { get; private set; }
