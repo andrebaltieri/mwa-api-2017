@@ -121,6 +121,6 @@
     <value>&lt;h1&gt; Bem vindo, &lt;strong&gt; {0} &lt;/strong&gt; &lt;/h1&gt;</value>
   </data>
   <data name="WelcomeEmailTitle" xml:space="preserve">
-    <value>Bem vindo, {0]</value>
+    <value>Bem vindo, {0}</value>
   </data>
 </root>

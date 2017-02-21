@@ -70,7 +70,7 @@ namespace ModernStore.Domain.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bem vindo, {0].
+        ///   Looks up a localized string similar to Bem vindo, {0}.
         /// </summary>
         public static string WelcomeEmailTitle {
             get {

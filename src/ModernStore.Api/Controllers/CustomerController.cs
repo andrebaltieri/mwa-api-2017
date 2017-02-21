@@ -19,8 +19,12 @@ namespace ModernStore.Api.Controllers
         [Route("v1/customers")]
         public IActionResult Post([FromBody] RegisterCustomerCommand command)
         {
-            _handler.Handle(command);
-            return Ok(command);
+            var result = _handler.Handle(command);
+
+            if (_handler.IsValid())
+                return Ok(result);
+            else
+                return BadRequest(_handler.Notifications);
         }
     }
 }

@@ -20,6 +20,7 @@ namespace ModerStore.Infra.Repositories
         public CustomerRepository(ModernStoreDataContext context)
         {
             _context = context;
+            var instance = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
         }
 
         public bool DocumentExists(string document)

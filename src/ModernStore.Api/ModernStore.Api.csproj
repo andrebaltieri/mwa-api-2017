@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net461</TargetFramework>
+    <RuntimeIdentifier>win7-x86</RuntimeIdentifier>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+    <AssemblyName>ModernStore.Api</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>ModernStore.Api</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="App.config" />
+    <Content Update="wwwroot;web.config">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidator" Version="1.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="1.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="1.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="1.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.1" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ModernStore.Domain\ModernStore.Domain.csproj" />
+    <ProjectReference Include="..\ModernStore.Shared\ModernStore.Shared.csproj" />
+    <ProjectReference Include="..\ModerStore.Infra\ModernStore.Infra.csproj" />
+  </ItemGroup>
+
+</Project>

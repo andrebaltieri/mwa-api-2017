@@ -7,10 +7,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using ModerStore.Infra.Contexts;
-using ModerStore.Infra.Repositories;
 using ModernStore.Domain.Repositories;
+using ModernStore.Domain.Commands.Handlers;
+using ModernStore.Domain.Services;
+using ModerStore.Infra.Contexts;
 using ModerStore.Infra.Transactions;
+using ModerStore.Infra.Repositories;
+using ModerStore.Infra.Services;
 
 namespace ModernStore.Api
 {
@@ -22,12 +25,17 @@ namespace ModernStore.Api
             services.AddCors();
 
             services.AddScoped<ModernStoreDataContext, ModernStoreDataContext>();
+
             services.AddTransient<IUow, Uow>();
+
             services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IOrderRepository, OrderRepository>();
 
+            services.AddTransient<CustomerCommandHandler, CustomerCommandHandler>();
+            services.AddTransient<OrderCommandHandler, OrderCommandHandler>();
 
+            services.AddTransient<IEmailService, EmailServices>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
