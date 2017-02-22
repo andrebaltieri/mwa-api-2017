@@ -10,6 +10,7 @@ using ModerStore.Infra.Contexts;
 using ModernStore.Domain.Commands.Results;
 using System.Data.SqlClient;
 using Dapper;
+using ModernStore.Shared;
 
 namespace ModerStore.Infra.Repositories
 {
@@ -46,7 +47,7 @@ namespace ModerStore.Infra.Repositories
 
             var query = "SELECT * FROM [GetCustomerInfoView] WHERE [Active]=1 AND [Username]=@username";
 
-            using (SqlConnection conn = new SqlConnection(@"Server=HENRIQUE;Database=ModernWebStore;Integrated Security=True;"))
+            using (SqlConnection conn = new SqlConnection(Runtime.ConnectionString))
             {
                 conn.Open();
                 return conn.Query<GetCustomerCommandResult>

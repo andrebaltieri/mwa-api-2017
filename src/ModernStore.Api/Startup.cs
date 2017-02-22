@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ModernStore.Domain.Repositories;
@@ -19,17 +15,29 @@ using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using ModernStore.Api.Security;
+using Microsoft.Extensions.Configuration;
+using ModernStore.Shared;
 
 namespace ModernStore.Api
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; set; }
         private const string ISSUER = "c1f51f43";
         private const string AUDIENCE = "c1f51f44";
         private const string SECRET_KEY = "c1f51f42-5727-4d15-b787-c6bbbb645024";
 
         private readonly SymmetricSecurityKey _signinKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(SECRET_KEY));
 
+        public Startup(IHostingEnvironment env)
+        {
+            var configurationBuilder = new ConfigurationBuilder()
+               .SetBasePath(env.ContentRootPath)
+               .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+               .AddEnvironmentVariables();
+
+            Configuration = configurationBuilder.Build();
+        }
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(config =>
@@ -112,6 +120,8 @@ namespace ModernStore.Api
             });
 
             app.UseMvc();
+
+            Runtime.ConnectionString = Configuration.GetConnectionString("CnnStr");
 
         }
     }

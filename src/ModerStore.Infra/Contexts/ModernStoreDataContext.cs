@@ -1,4 +1,5 @@
 ﻿using ModernStore.Domain.Entities;
+using ModernStore.Shared;
 using ModerStore.Infra.Mappings;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace ModerStore.Infra.Contexts
 {
     public class ModernStoreDataContext : DbContext
     {
-        public ModernStoreDataContext() : base(@"Server=HENRIQUE;Database=ModernWebStore;Integrated Security=True;")
+        public ModernStoreDataContext() : base(Runtime.ConnectionString)
         {
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;
