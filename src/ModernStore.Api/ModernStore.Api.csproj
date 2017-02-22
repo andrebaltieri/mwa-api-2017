@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <PackageReference Include="FluentValidator" Version="1.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="1.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="1.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="1.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="1.0.2" />

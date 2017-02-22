@@ -25,7 +25,7 @@ namespace ModerStore.Infra.Repositories
 
         public bool DocumentExists(string document)
         {
-            return _context.Customer.Any(x => x.Document.Number == document);
+            return _context.Customers.Any(x => x.Document.Number == document);
         }
 
         public GetCustomerCommandResult Get(string username)
@@ -58,14 +58,22 @@ namespace ModerStore.Infra.Repositories
 
         public Customer Get(Guid id)
         {
-            return _context.Customer
+            return _context.Customers
                 .Include(x => x.User)
                 .FirstOrDefault(x => x.Id == id);
         }
 
+        public Customer GetByUsername(string username)
+        {
+            return _context.Customers
+                .Include(x => x.User)
+                .AsNoTracking()
+                .FirstOrDefault(x => x.User.Username == username);
+        }
+
         public void Save(Customer customer)
         {
-            _context.Customer.Add(customer);
+            _context.Customers.Add(customer);
         }
 
         public void Update(Customer customer)
