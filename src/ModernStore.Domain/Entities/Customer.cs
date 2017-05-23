@@ -16,6 +16,7 @@ namespace ModernStore.Domain.Entities
             Document = document;
             User = user;
 
+            AddNotifications(user.Notifications);
             AddNotifications(name.Notifications);
             AddNotifications(email.Notifications);
             AddNotifications(Document.Notifications);
